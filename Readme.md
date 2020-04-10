@@ -47,5 +47,5 @@ git clone SSH-адрес_вашего_форка
 
 Репозиторий создан для обучения на профессиональном онлайн‑курсе «[JavaScript, уровень 3](https://htmlacademy.ru/intensive/react)» от [HTML Academy](https://htmlacademy.ru).
 
-[travis-image]: https://travis-ci.com/htmlacademy-react/972473-what-to-watch-3.svg?branch=master
-[travis-url]: https://travis-ci.com/htmlacademy-react/972473-what-to-watch-3
+[travis-url]: https://travis-ci.com/alpas13/what-to-watch
+[travis-image]: https://travis-ci.com/alpas13/what-to-watch.svg?branch=master
