@@ -8,31 +8,31 @@ import ShowMoreButton from "../show-more-button/show-more-button.jsx";
 
 const Main = React.memo(function Main() {
   return (
-      <Fragment>
-        <section className="movie-card">
-          <CardHeader
-              authorizationStatus={`NO_AUTH`}
-              currentPage={`MAIN`}
-          />
-          <div className="movie-card__wrap">
-            <div className="movie-card__info">
-              <div className="movie-card__poster">
-                <img src={`img/the-grand-budapest-hotel-poster.jpg`} alt="The Grand Budapest Hotel poster" width="218" height="327"/>
-              </div>
-              <CardDescription
-                  isMoviePage={false}
-              />
+    <Fragment>
+      <section className="movie-card">
+        <CardHeader
+          authorizationStatus={`NO_AUTH`}
+          currentPage={`MAIN`}
+        />
+        <div className="movie-card__wrap">
+          <div className="movie-card__info">
+            <div className="movie-card__poster">
+              <img src={`img/the-grand-budapest-hotel-poster.jpg`} alt="The Grand Budapest Hotel poster" width="218" height="327"/>
             </div>
+            <CardDescription
+              isMoviePage={false}
+            />
           </div>
-        </section>
-        <div className="page-content">
-          <PageContent>
-            <Genre/>
-            <FilmsList/>
-            <ShowMoreButton/>
-          </PageContent>
         </div>
-      </Fragment>
+      </section>
+      <div className="page-content">
+        <PageContent>
+          <Genre/>
+          <FilmsList/>
+          <ShowMoreButton/>
+        </PageContent>
+      </div>
+    </Fragment>
   );
 });
 

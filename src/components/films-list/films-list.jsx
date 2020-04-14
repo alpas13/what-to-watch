@@ -3,9 +3,9 @@ import PreviewFilm from "../preview-film/preview-film.jsx";
 
 const FilmsList = React.memo(function FilmsList() {
   return (
-      <div className="catalog__movies-list">
-        <PreviewFilm />
-      </div>
+    <div className="catalog__movies-list">
+      <PreviewFilm />
+    </div>
   );
 });
 

@@ -7,15 +7,15 @@ const PageContent = React.memo(function PageContent(props) {
   const isMain = React.Children.count(children) > 1;
 
   return (
-      <Fragment>
-        <section className={`catalog${isMain ? `` : ` catalog--like-this`}`}>
-          {isMain &&
-          <h2 className="catalog__title visually-hidden">Catalog</h2>}
-          {isMain || <h2 className="catalog__title">More like this</h2>}
-          {children}
-        </section>
-        <Footer/>
-      </Fragment>
+    <Fragment>
+      <section className={`catalog${isMain ? `` : ` catalog--like-this`}`}>
+        {isMain &&
+        <h2 className="catalog__title visually-hidden">Catalog</h2>}
+        {isMain || <h2 className="catalog__title">More like this</h2>}
+        {children}
+      </section>
+      <Footer/>
+    </Fragment>
   );
 });
 
