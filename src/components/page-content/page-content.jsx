@@ -1,26 +1,29 @@
-import React from "react";
+import React, {Fragment} from "react";
 import PropTypes from "prop-types";
+import Footer from "../footer/footer.jsx";
 
 const PageContent = React.memo(function PageContent(props) {
-  const {children} = props;
-  const childrenCount = React.Children.count(children);
-  const isMain = childrenCount > 2;
+  let {children} = props;
+  const isMain = React.Children.count(children) > 1;
+
   return (
-      <div className="page-content">
-        <section className="catalog">
-          {isMain && <h2 className="catalog__title visually-hidden">Catalog</h2>}
+      <Fragment>
+        <section className={`catalog${isMain ? `` : ` catalog--like-this`}`}>
+          {isMain &&
+          <h2 className="catalog__title visually-hidden">Catalog</h2>}
           {isMain || <h2 className="catalog__title">More like this</h2>}
-          {React.Children.map(children, (node, index) => {
-            return isMain && index !== children.length -1 ? node : ``;
-          })}
+          {children}
         </section>
-        {isMain ? children[children.length -1] : ``}
-      </div>
+        <Footer/>
+      </Fragment>
   );
 });
 
 export default PageContent;
 
 PageContent.propTypes = {
-  children: PropTypes.arrayOf(PropTypes.node.isRequired).isRequired,
+  children: PropTypes.oneOfType([
+    PropTypes.node,
+    PropTypes.arrayOf(PropTypes.node)
+  ]).isRequired,
 };
