@@ -1,10 +1,13 @@
 import React from "react";
-import PreviewFilm from "../preview-film/preview-film.jsx";
+import SmallMovieCard from "../small-movie-card/small-movie-card.jsx";
+import films from "../../mocks/films.js";
 
 const FilmsList = React.memo(function FilmsList() {
   return (
     <div className="catalog__movies-list">
-      <PreviewFilm />
+      <SmallMovieCard
+        films={films}
+      />
     </div>
   );
 });
