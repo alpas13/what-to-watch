@@ -4,7 +4,7 @@ import Main from "../main/main.jsx";
 const App = React.memo(function App() {
 
   return (
-     <Main />
+    <Main />
   );
 });
 
