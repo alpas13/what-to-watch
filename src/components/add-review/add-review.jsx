@@ -8,7 +8,7 @@ const AddReview = React.memo(function AddReview() {
     <section className="movie-card movie-card--full">
       <div className="movie-card__header">
         <CardHeader
-          authorizationStatus={`AUTH`}
+          authorizationStatus={`NO_AUTH`}
           currentPage={`ADD_REVIEW`}
         />
         <div className="movie-card__poster movie-card__poster--small">

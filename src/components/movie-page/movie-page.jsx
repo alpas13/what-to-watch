@@ -8,6 +8,7 @@ import MovieReviews from "../movie-reviews/movie-reviews.jsx";
 import PageContent from "../page-content/page-content.jsx";
 import FilmsList from "../films-list/films-list.jsx";
 import {Pages} from "../../const.js";
+import films from "../../mocks/films.js";
 
 const MoviePage = React.memo(function MoviePage(props) {
   const {currentTab} = props;
@@ -53,7 +54,9 @@ const MoviePage = React.memo(function MoviePage(props) {
       </section>
       <div className="page-content">
         <PageContent>
-          <FilmsList/>
+          <FilmsList
+            films={films}
+          />
         </PageContent>
       </div>
     </Fragment>
