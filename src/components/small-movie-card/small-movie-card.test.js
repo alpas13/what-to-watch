@@ -1,12 +1,8 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import MyList from "./my-list.jsx";
-import CardHeader from "../card-header/card-header";
-import {Pages} from "../../const";
-import PageContent from "../page-content/page-content";
-import FilmsList from "../films-list/films-list";
+import SmallMovieCard from "./small-movie-card.jsx";
 
-const mock = [
+const film =
   {
     id: 1,
     name: `Shutter Island`,
@@ -25,24 +21,13 @@ const mock = [
     genre: `Mystery`,
     released: 2010,
     isFavorite: false
-  }
-];
+  };
 
-test(`Correctly render MovieReviews component`, () => {
-  const {films} = mock;
-
+test(`Correctly render SmallMovieCard component`, () => {
   const tree = renderer.create(
-      <MyList>
-        <CardHeader
-          authorizationStatus={`NO_AUTH`}
-          currentPage={Pages.MY_LIST}
-        />
-        <PageContent>
-          <FilmsList
-            films={films}
-          />
-        </PageContent>
-      </MyList>
+      <SmallMovieCard
+        film={film}
+      />
   ).toJSON();
 
   expect(tree).toMatchSnapshot();
