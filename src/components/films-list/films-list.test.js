@@ -48,10 +48,10 @@ const film = {
 test(`Correctly render FilmsList component`, () => {
   const tree = renderer.create(
       <FilmsList
-          films={films}
+        films={films}
       >
         <SmallMovieCard
-            film={film}
+          film={film}
         />
       </FilmsList>
   ).toJSON();
