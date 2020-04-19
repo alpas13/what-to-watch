@@ -1,12 +1,17 @@
 import React from "react";
 import renderer from "react-test-renderer";
+import {Provider} from "react-redux";
+import configureStore from "redux-mock-store";
+import NameSpace from "../../reducer/name-space.js";
 import MyList from "./my-list.jsx";
 import CardHeader from "../card-header/card-header";
 import {Pages} from "../../const";
 import PageContent from "../page-content/page-content";
 import FilmsList from "../films-list/films-list";
 
-const mock = [
+const mockStore = configureStore([]);
+
+const films = [
   {
     id: 1,
     name: `Shutter Island`,
@@ -29,20 +34,26 @@ const mock = [
 ];
 
 test(`Correctly render MovieReviews component`, () => {
-  const {films} = mock;
+  const store = mockStore({
+    [NameSpace.DATA]: {
+      films
+    }
+  });
 
   const tree = renderer.create(
-      <MyList>
-        <CardHeader
-          authorizationStatus={`NO_AUTH`}
-          currentPage={Pages.MY_LIST}
-        />
-        <PageContent>
-          <FilmsList
-            films={films}
+      <Provider store={store}>
+        <MyList>
+          <CardHeader
+            authorizationStatus={`NO_AUTH`}
+            currentPage={Pages.MY_LIST}
           />
-        </PageContent>
-      </MyList>
+          <PageContent>
+            <FilmsList
+              films={films}
+            />
+          </PageContent>
+        </MyList>
+      </Provider>
   ).toJSON();
 
   expect(tree).toMatchSnapshot();

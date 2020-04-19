@@ -1,5 +1,8 @@
 import React from "react";
 import renderer from "react-test-renderer";
+import {Provider} from "react-redux";
+import configureStore from "redux-mock-store";
+import NameSpace from "../../reducer/name-space.js";
 import Main from "./main.jsx";
 import CardHeader from "../card-header/card-header.jsx";
 import CardDescription from "../card-description/card-description.jsx";
@@ -9,7 +12,9 @@ import FilmsList from "../films-list/films-list.jsx";
 import ShowMoreButton from "../show-more-button/show-more-button.jsx";
 import {Pages} from "../../const.js";
 
-const mock = [
+const mockStore = configureStore([]);
+
+const films = [
   {
     id: 1,
     name: `Shutter Island`,
@@ -32,25 +37,31 @@ const mock = [
 ];
 
 test(`Correctly render Main component`, () => {
-  const {films} = mock;
+  const store = mockStore({
+    [NameSpace.DATA]: {
+      films
+    }
+  });
 
   const tree = renderer.create(
-      <Main>
-        <CardHeader
-          currentPage={Pages.MAIN}
-          authorizationStatus={`NO_AUTH`}
-        />
-        <CardDescription
-          isMoviePage={false}
-        />
-        <PageContent>
-          <Genre />
-          <FilmsList
-            films={films}
+      <Provider store={store}>
+        <Main>
+          <CardHeader
+            currentPage={Pages.MAIN}
+            authorizationStatus={`NO_AUTH`}
           />
-          <ShowMoreButton />
-        </PageContent>
-      </Main>
+          <CardDescription
+            isMoviePage={false}
+          />
+          <PageContent>
+            <Genre />
+            <FilmsList
+              films={films}
+            />
+            <ShowMoreButton />
+          </PageContent>
+        </Main>
+      </Provider>
   ).toJSON();
 
   expect(tree).toMatchSnapshot();

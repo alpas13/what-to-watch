@@ -1,15 +1,19 @@
 import React, {Fragment} from "react";
 import PropTypes from "prop-types";
+import {connect} from "react-redux";
+
 import CardHeader from "../card-header/card-header.jsx";
 import CardDescription from "../card-description/card-description.jsx";
 import PageContent from "../page-content/page-content.jsx";
 import Genre from "../genre/genre.jsx";
 import FilmsList from "../films-list/films-list.jsx";
 import ShowMoreButton from "../show-more-button/show-more-button.jsx";
-import {Pages} from "../../const.js";
-import films from "../../mocks/films.js";
 
-const Main = React.memo(function Main() {
+import {Pages} from "../../const.js";
+import {getFilms} from "../../reducer/data/data-selectors.js";
+
+const Main = React.memo(function Main(props) {
+  const {films} = props;
 
   return (
     <Fragment>
@@ -51,4 +55,9 @@ Main.propTypes = {
   })),
 };
 
-export default Main;
+const mapStateToProps = (state) => ({
+  films: getFilms(state),
+});
+
+export {Main};
+export default connect(mapStateToProps)(Main);

@@ -1,5 +1,8 @@
 import React from "react";
 import renderer from "react-test-renderer";
+import {Provider} from "react-redux";
+import configureStore from "redux-mock-store";
+import NameSpace from "../../reducer/name-space.js";
 import MoviePage from "./movie-page.jsx";
 import CardHeader from "../card-header/card-header.jsx";
 import CardDescription from "../card-description/card-description.jsx";
@@ -10,7 +13,9 @@ import PageContent from "../page-content/page-content.jsx";
 import FilmsList from "../films-list/films-list.jsx";
 import {Pages} from "../../const.js";
 
-const mock = [
+const mockStore = configureStore([]);
+
+const films = [
   {
     id: 1,
     name: `Shutter Island`,
@@ -33,29 +38,34 @@ const mock = [
 ];
 
 test(`Correctly render MoviePage component`, () => {
-  const {films} = mock;
+  const store = mockStore({
+    [NameSpace.DATA]: {
+      films
+    }
+  });
 
   const tree = renderer.create(
-      <MoviePage
-        currentTab={`overview`}
-      >
-        <CardHeader
-          currentPage={Pages.MOVIE_PAGE}
-          authorizationStatus={`NO_AUTH`}
-        />
-        <CardDescription
-          isMoviePage={true}
-        />
-        <Overview/>
-        <Details/>
-        <MovieReviews/>
-        <PageContent>
-          <FilmsList
-            films={films}
+      <Provider store={store}>
+        <MoviePage
+          currentTab={`overview`}
+        >
+          <CardHeader
+            currentPage={Pages.MOVIE_PAGE}
+            authorizationStatus={`NO_AUTH`}
           />
-        </PageContent>
-      </MoviePage>
-
+          <CardDescription
+            isMoviePage={true}
+          />
+          <Overview />
+          <Details />
+          <MovieReviews />
+          <PageContent>
+            <FilmsList
+              films={films}
+            />
+          </PageContent>
+        </MoviePage>
+      </Provider>
   ).toJSON();
 
   expect(tree).toMatchSnapshot();
