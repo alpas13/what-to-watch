@@ -5,13 +5,14 @@ import {Provider} from "react-redux";
 import reducer from "./reducer/reducer.js";
 import {ActionCreator as DataAction} from "./reducer/data/actions.js";
 import App from "./components/app/app.jsx";
+import films from "./mocks/films.js";
 
 const store = createStore(
     reducer,
     window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__() : (f) => f
 );
 
-store.dispatch(DataAction.loadFilms());
+store.dispatch(DataAction.loadFilms(films));
 
 ReactDom.render(
     <Provider store={store}>
