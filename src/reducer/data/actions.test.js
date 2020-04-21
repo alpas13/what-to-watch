@@ -24,5 +24,5 @@ const films = [
 ];
 
 test(`Action loadFilms change state correctly `, () => {
-  expect(reducer(void 0, ActionCreator.loadFilms(films))).toEqual({films: films});
+  expect(reducer(void 0, ActionCreator.loadFilms(films))).toEqual({films});
 });
